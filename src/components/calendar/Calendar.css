@@ -1,0 +1,47 @@
+.modal-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  width: 400px; /* Adjust the width as needed */
+  height: 380px;
+}
+
+.text-area {
+  width: 100%;
+}
+
+.time-picker {
+  width: 100%;
+}
+
+.calendar-btns {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.calendar-btn {
+  width: 150px;
+  height: 50px;
+  font-size: 14px;
+  text-align: center;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.submit {
+  background-color: green;
+  color: white;
+}
+
+.cancel {
+  background-color: red;
+  color: white;
+}
+
+.fc-day {
+  cursor: pointer;
+}
