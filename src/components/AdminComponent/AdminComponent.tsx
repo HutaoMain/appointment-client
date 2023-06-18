@@ -77,9 +77,11 @@ const AdminComponent = () => {
           <select
             defaultValue={params.row.status}
             onChange={handleStatusChange}
+            className={`admin-component-select ${params.row.status}`}
           >
             <option value="Pending">Pending</option>
             <option value="Accept">Accept</option>
+            <option value="Pending">Reject</option>
           </select>
         );
       },
@@ -87,12 +89,7 @@ const AdminComponent = () => {
   ];
 
   return (
-    <div
-      style={{
-        width: "100vw",
-        height: "100%",
-      }}
-    >
+    <div className="admin-component">
       <section className="data-grid">
         <DataGrid
           rows={data ?? []}

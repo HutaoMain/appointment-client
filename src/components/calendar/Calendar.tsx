@@ -22,14 +22,6 @@ const Calendar = () => {
   );
   const [message, setMessage] = useState<string>("");
 
-  // const { data } = useQuery<AppointmentInterface[]>({
-  //   queryKey: ["navbar"],
-  //   queryFn: async () =>
-  //     fetch(`${import.meta.env.VITE_APP_API_URL}/api/appointment/list`).then(
-  //       (res) => res.json()
-  //     ),
-  // });
-
   const { data } = useQuery<AppointmentInterface[]>("calendar", async () => {
     const response = await axios.get(
       `${import.meta.env.VITE_APP_API_URL}/api/appointment/list`
@@ -79,45 +71,51 @@ const Calendar = () => {
   };
 
   return (
-    <div>
-      <FullCalendar
-        plugins={[dayGridPlugin, interactionPlugin]}
-        initialView="dayGridMonth"
-        dateClick={(info) => toggleModal(info.date)}
-        events={data}
-      />
-      <Modal isOpen={open} onRequestClose={toggleModal} style={customStyles}>
-        <div className="modal-container">
-          <h2>Date: {moment(selectedDate).format("yyyy-MM-DD")}</h2>
-          <label>
-            Time of Appointment: {""}
-            <TimePicker
-              onChange={handleTimeChange}
-              value={selectedTime}
-              className="time-picker"
-            />
-          </label>
-          <label>
-            Message:
-            <textarea
-              name=""
-              id=""
-              cols={30}
-              rows={10}
-              onChange={(e) => setMessage(e.target.value)}
-              className="text-area"
-            ></textarea>
-          </label>
-          <div className="calendar-btns">
-            <button className="calendar-btn submit" onClick={handleSubmit}>
-              Submit Appointment
-            </button>
-            <button className="calendar-btn cancel" onClick={toggleModal}>
-              Cancel Appointment
-            </button>
+    <div className="calendar">
+      <h2>Book an appointment here</h2>
+      <p>
+        Click on your desired date for the appointment and submit your inquiry.
+      </p>
+      <div className="calendar-container">
+        <FullCalendar
+          plugins={[dayGridPlugin, interactionPlugin]}
+          initialView="dayGridMonth"
+          dateClick={(info) => toggleModal(info.date)}
+          events={data}
+        />
+        <Modal isOpen={open} onRequestClose={toggleModal} style={customStyles}>
+          <div className="modal-container">
+            <h2>Date: {moment(selectedDate).format("yyyy-MM-DD")}</h2>
+            <label>
+              Time of Appointment: {""}
+              <TimePicker
+                onChange={handleTimeChange}
+                value={selectedTime}
+                className="time-picker"
+              />
+            </label>
+            <label>
+              Message:
+              <textarea
+                name=""
+                id=""
+                cols={30}
+                rows={10}
+                onChange={(e) => setMessage(e.target.value)}
+                className="text-area"
+              ></textarea>
+            </label>
+            <div className="calendar-btns">
+              <button className="calendar-btn submit" onClick={handleSubmit}>
+                Submit Appointment
+              </button>
+              <button className="calendar-btn cancel" onClick={toggleModal}>
+                Cancel Appointment
+              </button>
+            </div>
           </div>
-        </div>
-      </Modal>
+        </Modal>
+      </div>
     </div>
   );
 };

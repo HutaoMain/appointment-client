@@ -45,3 +45,26 @@
 .fc-day {
   cursor: pointer;
 }
+
+.calendar h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.calendar p {
+  font-size: 18px;
+  margin-bottom: 40px;
+}
+
+.calendar {
+  display: flex;
+  width: 100vw;
+  align-items: center;
+  flex-direction: column;
+  margin: 30px 0;
+}
+
+.calendar-container {
+  width: 100%;
+  max-width: 1240px;
+}

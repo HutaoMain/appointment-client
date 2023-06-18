@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  margin-top: 3%;
+  margin-top: 7%;
 }
 
 .header-left {
@@ -23,6 +23,23 @@
 }
 
 .header-pic {
+  min-width: 300px;
+  min-height: auto;
   width: 90%;
   height: auto;
+}
+
+@media screen and (max-width: 700px) {
+  .header {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .header-left {
+    width: 90%;
+  }
+
+  .header-right {
+    width: 90%;
+  }
 }
