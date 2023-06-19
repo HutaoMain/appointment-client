@@ -119,6 +119,20 @@ const Navbar = ({ user }: any) => {
                 </NavLink>
               </li>
             )}
+            {data?.role === "user" && (
+              <li className="nav-item">
+                <NavLink
+                  style={{ textDecoration: "none", color: "black" }}
+                  to="/user"
+                  className={(isActive) =>
+                    "nav-link" + (!isActive ? "" : "active")
+                  }
+                  onClick={() => (isOpen ? handleClick : null)}
+                >
+                  USER
+                </NavLink>
+              </li>
+            )}
             {user ? (
               <li className="nav-item">
                 <span className="username-logout-btn-container">

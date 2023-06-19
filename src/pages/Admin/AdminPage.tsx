@@ -1,14 +1,13 @@
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import "./AdminComponent.css";
-// import moment from "moment";
+import "./AdminPage.css";
 import { AppointmentInterface } from "../../types/Types";
 import { useQuery } from "react-query";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const AdminComponent = () => {
+const AdminPage = () => {
   const { data } = useQuery<AppointmentInterface[]>({
-    queryKey: ["adminComponent"],
+    queryKey: ["AdminPage"],
     queryFn: async () =>
       fetch(`${import.meta.env.VITE_APP_API_URL}/api/appointment/list`).then(
         (res) => res.json()
@@ -102,4 +101,4 @@ const AdminComponent = () => {
   );
 };
 
-export default AdminComponent;
+export default AdminPage;

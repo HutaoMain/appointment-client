@@ -6,6 +6,7 @@ import axios from "axios";
 import Modal from "react-modal";
 import { customStyles } from "../../CustomStyles";
 import RegistrationModal from "../RegistrationModal/RegistrationModal";
+import GoogleLogin from "../GoogleLogin/GoogleLogin";
 
 Modal.setAppElement("#root");
 
@@ -85,7 +86,7 @@ const LoginModal = ({ toggleNavbar }: any) => {
         </p>
       </div>
       <p className="or-text">or</p>
-      <button className="google-button">Sign in with Google</button>
+      <GoogleLogin />
       <Modal
         isOpen={regIsOpen}
         onRequestClose={toggleRegistrationModal}

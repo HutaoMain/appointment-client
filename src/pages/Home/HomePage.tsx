@@ -1,8 +1,8 @@
-import Service from "../components/ServiceComponent/Service";
-import Team from "../components/TeamComponent/Team";
-import AboutUs from "../components/aboutUs/AboutUs";
-import Calendar from "../components/calendar/Calendar";
-import Header from "../components/header/Header";
+import Service from "../../components/ServiceComponent/Service";
+import Team from "../../components/TeamComponent/Team";
+import AboutUs from "../../components/aboutUs/AboutUs";
+import Calendar from "../../components/calendar/Calendar";
+import Header from "../../components/header/Header";
 
 const HomePage = () => {
   return (
