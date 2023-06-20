@@ -2,7 +2,7 @@ import { RegistrationInterface } from "../../types/Types";
 import { useState } from "react";
 import "./RegistrationModal.css";
 
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { toast } from "react-toastify";
 
 const RegistrationModal = ({ toggleRegistrationModal }: any) => {
@@ -12,6 +12,8 @@ const RegistrationModal = ({ toggleRegistrationModal }: any) => {
       email: "",
       password: "",
     });
+
+  const [error, setError] = useState<string>("");
 
   const onChangeHandler = (
     event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -31,6 +33,7 @@ const RegistrationModal = ({ toggleRegistrationModal }: any) => {
         `${import.meta.env.VITE_APP_API_URL}/api/user/register`,
         registrationInfo
       );
+
       toast("Successful Registration!", {
         type: "success",
         position: "bottom-right",
@@ -44,7 +47,19 @@ const RegistrationModal = ({ toggleRegistrationModal }: any) => {
         toggleRegistrationModal();
       }, 2000);
     } catch (err) {
-      console.log(err);
+      if (axios.isAxiosError(err)) {
+        const axiosError = err as AxiosError;
+        if (axiosError.response) {
+          const responseStatus = axiosError.response.status;
+          if (responseStatus === 409) {
+            setError("Email already exist.");
+          } else {
+            setError("An error occured.");
+          }
+        }
+      } else {
+        setError((err as Error).message);
+      }
     }
   };
 
@@ -75,6 +90,13 @@ const RegistrationModal = ({ toggleRegistrationModal }: any) => {
           onChange={onChangeHandler}
         />
       </div>
+      {error && (
+        <span
+          style={{ color: "red", paddingTop: "5px", paddingBottom: "10px" }}
+        >
+          {error}
+        </span>
+      )}
       <div className="register-btns">
         <button className="register-button" onClick={handleSubmit}>
           Register

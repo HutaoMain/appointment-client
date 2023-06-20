@@ -11,10 +11,13 @@ import Modal from "react-modal";
 import { customStyles } from "../../CustomStyles";
 import { AppointmentInterface } from "../../types/Types";
 import { useQuery } from "react-query";
+import useAuthStore from "../../zustand/AuthStore";
 
 Modal.setAppElement("#root");
 
 const Calendar = () => {
+  const user = useAuthStore((state) => state.user);
+
   const [open, setOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [selectedTime, setSelectedTime] = useState<string | null>(
@@ -44,6 +47,10 @@ const Calendar = () => {
   };
 
   const handleSubmit = async () => {
+    if (message === "") {
+      alert("Please put message before submitting.");
+    }
+
     try {
       await axios.post(
         `${import.meta.env.VITE_APP_API_URL}/api/appointment/create`,
@@ -51,6 +58,7 @@ const Calendar = () => {
           appointmentDate: moment(selectedDate).format("yyyy-MM-DD"),
           appointmentTime: selectedTime,
           inquiryMessage: message,
+          email: user,
         }
       );
       toast.success("Successfully file an appointment", {

@@ -82,7 +82,10 @@ const LoginModal = ({ toggleNavbar }: any) => {
           Forgot password?
         </a>
         <p className="or-text">
-          No account? Register <a onClick={toggleRegistrationModal}>here</a>
+          No account? Register{" "}
+          <a onClick={toggleRegistrationModal}>
+            <u style={{ cursor: "pointer" }}>here</u>
+          </a>
         </p>
       </div>
       <p className="or-text">or</p>
