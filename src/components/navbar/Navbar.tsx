@@ -46,64 +46,49 @@ const Navbar = ({ user }: any) => {
           </Link>
           <ul className={isOpen ? "nav-menu active" : "nav-menu"}>
             <li className="nav-item">
-              <NavLink
-                to="/"
+              <a
+                href="#"
                 style={{ textDecoration: "none", color: "black" }}
-                className={(isActive) =>
-                  "nav-link" + (!isActive ? "" : "active")
-                }
                 onClick={() => (isOpen ? handleClick : null)}
               >
                 HOME
-              </NavLink>
+              </a>
             </li>
             <li className="nav-item">
-              <NavLink
+              <a
                 style={{ textDecoration: "none", color: "black" }}
-                to="/aboutus"
-                className={(isActive) =>
-                  "nav-link" + (!isActive ? "" : "active")
-                }
+                href="#aboutus"
                 onClick={() => (isOpen ? handleClick : null)}
               >
                 ABOUT US
-              </NavLink>
+              </a>
             </li>
             <li className="nav-item">
-              <NavLink
+              <a
                 style={{ textDecoration: "none", color: "black" }}
-                to="/dashboard"
-                className={(isActive) =>
-                  "nav-link" + (!isActive ? "" : "active")
-                }
+                href="#services"
                 onClick={() => (isOpen ? handleClick : null)}
               >
-                DASHBOARD
-              </NavLink>
+                SERVICE
+              </a>
             </li>
             <li className="nav-item">
-              <NavLink
+              <a
                 style={{ textDecoration: "none", color: "black" }}
-                to="/team"
-                className={(isActive) =>
-                  "nav-link" + (!isActive ? "" : "active")
-                }
+                href="#team"
                 onClick={() => (isOpen ? handleClick : null)}
               >
                 TEAM
-              </NavLink>
+              </a>
             </li>
             <li className="nav-item">
-              <NavLink
+              <a
                 style={{ textDecoration: "none", color: "black" }}
-                to="/contactus"
-                className={(isActive) =>
-                  "nav-link" + (!isActive ? "" : "active")
-                }
+                href="#calendar"
                 onClick={() => (isOpen ? handleClick : null)}
               >
                 CONTACT US
-              </NavLink>
+              </a>
             </li>
             {data?.role === "admin" && (
               <li className="nav-item">

@@ -15,6 +15,12 @@ export const useAuthStore = create<AuthStore>((set) => ({
   clearUser: () => {
     localStorage.removeItem("notorious-details-user");
     set({ user: null });
+    setTimeout(() => {
+      const url = new URL(window.location.href);
+      url.searchParams.delete("email");
+      const newUrl = url.href;
+      window.history.replaceState(null, "", newUrl);
+    }, 0);
   },
 }));
 

@@ -3,6 +3,10 @@ body {
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 .App {
   overflow-x: hidden;
   text-align: center;

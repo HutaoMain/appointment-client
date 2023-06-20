@@ -8,7 +8,7 @@ import {
 
 const Service = () => {
   return (
-    <div className="services">
+    <div className="services" id="services">
       <h2>Our Services</h2>
       <p>Choose our services for the best car care experience.</p>
       <div className="services-grid">

@@ -3,7 +3,7 @@ import headerPic from "../../assets/header-pic.png";
 
 const Header = () => {
   return (
-    <div className="header">
+    <div className="header" id="header">
       <section className="header-left">
         <div className="header-text">
           <h2>

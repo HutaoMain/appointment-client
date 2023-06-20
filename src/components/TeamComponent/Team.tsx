@@ -1,11 +1,11 @@
 import "./Team.css";
-import { Facebook, Instagram, Twitter, Email } from "@mui/icons-material";
+import { Facebook } from "@mui/icons-material";
 import Logo from "../../assets/logo.png";
 import Owner from "../../assets/ja.jpg";
 
 const Team = () => {
   return (
-    <div className="team">
+    <div className="team" id="team">
       <h2>Our Team</h2>
       <p>
         In completing this project we conducted several interviews to obtain the
@@ -18,17 +18,12 @@ const Team = () => {
           <p style={{ color: "gray" }}>BUSSINESS OWNER</p>
           <p>There's nothing wrong for staying small.</p>
           <div className="socials">
-            <a href="#">
+            <a
+              href="https://www.facebook.com/profile.php?id=100055708482771"
+              target="_blank"
+              style={{ textDecoration: "none" }}
+            >
               <Facebook />
-            </a>
-            <a href="#">
-              <Instagram />
-            </a>
-            <a href="#">
-              <Twitter />
-            </a>
-            <a href="#">
-              <Email />
             </a>
           </div>
         </div>
@@ -38,17 +33,12 @@ const Team = () => {
           <p style={{ color: "gray" }}>BUSSINESS</p>
           <p>It will be our pleasure to assist you of all you need.</p>
           <div className="socials">
-            <a href="#">
+            <a
+              href="https://www.facebook.com/notoriousgarageph"
+              target="_blank"
+              style={{ textDecoration: "none" }}
+            >
               <Facebook />
-            </a>
-            <a href="#">
-              <Instagram />
-            </a>
-            <a href="#">
-              <Twitter />
-            </a>
-            <a href="#">
-              <Email />
             </a>
           </div>
         </div>

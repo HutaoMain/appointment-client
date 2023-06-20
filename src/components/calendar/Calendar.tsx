@@ -71,7 +71,7 @@ const Calendar = () => {
   };
 
   return (
-    <div className="calendar">
+    <div className="calendar" id="calendar">
       <h2>Book an appointment here</h2>
       <p>
         Click on your desired date for the appointment and submit your inquiry.
