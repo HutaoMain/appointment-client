@@ -55,6 +55,17 @@
   flex-grow: 1;
 }
 
+.cancel-appointment-btn {
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  background-color: rgb(184, 64, 14);
+  color: #ffff;
+  border-radius: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
 /* Media query for responsiveness */
 @media screen and (max-width: 480px) {
   .rectangle {

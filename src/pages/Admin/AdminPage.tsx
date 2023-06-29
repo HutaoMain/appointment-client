@@ -30,12 +30,18 @@ const AdminPage = () => {
       flex: 1,
     },
     {
+      field: "email",
+      headerName: "user Email",
+      headerAlign: "center",
+      align: "center",
+      flex: 1,
+    },
+    {
       field: "appointmentTime",
       headerName: "Appointment Time",
       headerAlign: "center",
       align: "center",
       flex: 1,
-      // valueFormatter: (params) => moment(params.value).format("hh:mm A"),
     },
     {
       field: "inquiryMessage",
@@ -59,6 +65,50 @@ const AdminPage = () => {
             }`,
             {
               status: newStatus,
+              userNotification: true,
+            }
+          );
+          toast.success("Successfully updated status!", {
+            position: "bottom-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+          setTimeout(() => {
+            window.location.reload();
+          }, 2000);
+        };
+
+        return (
+          <select
+            defaultValue={params.row.status}
+            onChange={handleStatusChange}
+            className={`admin-component-select ${params.row.status}`}
+          >
+            <option value="Pending">Pending</option>
+            <option value="Accepted">Accept</option>
+            <option value="Rejected">Reject</option>
+          </select>
+        );
+      },
+    },
+    {
+      field: "action",
+      headerName: "Action",
+      headerAlign: "center",
+      align: "center",
+      flex: 1,
+      renderCell: (params) => {
+        const handleChangeMarkAsRead = () => {
+          axios.put(
+            `${import.meta.env.VITE_APP_API_URL}/api/appointment/update/${
+              params.row._id
+            }`,
+            {
+              adminMarkAsRead: true,
             }
           );
           toast.success("Successfully updated status!", {
@@ -73,15 +123,13 @@ const AdminPage = () => {
         };
 
         return (
-          <select
-            defaultValue={params.row.status}
-            onChange={handleStatusChange}
-            className={`admin-component-select ${params.row.status}`}
-          >
-            <option value="Pending">Pending</option>
-            <option value="Accept">Accept</option>
-            <option value="Pending">Reject</option>
-          </select>
+          <>
+            {params.row.adminMarkAsRead === true ? (
+              <></>
+            ) : (
+              <button onClick={handleChangeMarkAsRead}>Mark as Read</button>
+            )}
+          </>
         );
       },
     },

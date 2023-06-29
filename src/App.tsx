@@ -10,6 +10,8 @@ import { useQuery } from "react-query";
 import { UserInterface } from "./types/Types";
 import UserPage from "./pages/User/UserPage";
 import { useEffect } from "react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const user = useAuthStore((state) => state.user);
@@ -34,7 +36,7 @@ function App() {
     }
 
     console.log(email);
-  }, []);
+  }, [data]);
 
   return (
     <div className="App">
@@ -44,6 +46,7 @@ function App() {
         <Route path="admin" element={data?.role === "admin" && <AdminPage />} />
         <Route path="user" element={data?.role === "user" && <UserPage />} />
       </Routes>
+      <ToastContainer />
     </div>
   );
 }

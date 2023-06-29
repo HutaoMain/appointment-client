@@ -4,6 +4,8 @@ import useAuthStore from "../../zustand/AuthStore";
 import { AppointmentInterface } from "../../types/Types";
 import { useState } from "react";
 import moment from "moment";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const UserPage = () => {
   const user = useAuthStore((state) => state.user);
@@ -27,6 +29,54 @@ const UserPage = () => {
   const sortedAppointments = filteredAppointments?.sort((a, b) =>
     a.appointmentDate.localeCompare(b.appointmentDate)
   );
+
+  const handleCancelAppointment = async (id: string) => {
+    try {
+      await axios.delete(
+        `${import.meta.env.VITE_APP_API_URL}/api/appointment/delete/${id}`
+      );
+      toast.success("Successfully cancelled your appointment", {
+        position: "bottom-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleMarkAsRead = async (id: string) => {
+    try {
+      await axios.put(
+        `${import.meta.env.VITE_APP_API_URL}/api/appointment/update/${id}`,
+        {
+          userMarkAsRead: true,
+        }
+      );
+      toast.success("Successfully cancelled your appointment", {
+        position: "bottom-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
+      // Update UI or display a success message
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="user-page">
@@ -60,6 +110,31 @@ const UserPage = () => {
               <span className="rectangle-label">Status:</span>
               <span className="rectangle-value">{item.status}</span>
             </div>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "20px",
+            }}
+          >
+            <button
+              className="cancel-appointment-btn"
+              onClick={() => handleCancelAppointment(item._id)}
+            >
+              Cancel Appointment
+            </button>
+            {item.userMarkAsRead === false && item.userNotification === true ? (
+              <button
+                className="cancel-appointment-btn"
+                onClick={() => handleMarkAsRead(item._id)}
+              >
+                Mark as read
+              </button>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       ))}

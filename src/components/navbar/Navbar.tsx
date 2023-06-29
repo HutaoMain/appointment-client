@@ -1,7 +1,7 @@
 import { Close, Menu, Person } from "@mui/icons-material";
 import "./Navbar.css";
 import logo from "../../assets/logo.png";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { useState } from "react";
 import Modal from "react-modal";
 import { customStyles } from "../../CustomStyles";
@@ -9,6 +9,7 @@ import LoginModal from "../LoginModal/LoginModal";
 import useAuthStore from "../../zustand/AuthStore";
 import { UserInterface } from "../../types/Types";
 import { useQuery } from "react-query";
+import NotificationBadge from "../NotificationBadge/NotificationBadge";
 
 Modal.setAppElement("#root");
 
@@ -33,6 +34,8 @@ const Navbar = ({ user }: any) => {
     setIsLoginModalOpen(!isLoginModalOpen);
   };
 
+  const location = useLocation();
+
   return (
     <div>
       <div
@@ -47,7 +50,7 @@ const Navbar = ({ user }: any) => {
           <ul className={isOpen ? "nav-menu active" : "nav-menu"}>
             <li className="nav-item">
               <a
-                href="#"
+                href={location.pathname !== "/" ? "/" : "#"}
                 style={{ textDecoration: "none", color: "black" }}
                 onClick={() => (isOpen ? handleClick : null)}
               >
@@ -105,18 +108,20 @@ const Navbar = ({ user }: any) => {
               </li>
             )}
             {data?.role === "user" && (
-              <li className="nav-item">
-                <NavLink
-                  style={{ textDecoration: "none", color: "black" }}
-                  to="/user"
-                  className={(isActive) =>
-                    "nav-link" + (!isActive ? "" : "active")
-                  }
-                  onClick={() => (isOpen ? handleClick : null)}
-                >
-                  USER
-                </NavLink>
-              </li>
+              <>
+                <li className="nav-item">
+                  <NavLink
+                    style={{ textDecoration: "none", color: "black" }}
+                    to="/user"
+                    className={(isActive) =>
+                      "nav-link" + (!isActive ? "" : "active")
+                    }
+                    onClick={() => (isOpen ? handleClick : null)}
+                  >
+                    USER
+                  </NavLink>
+                </li>
+              </>
             )}
             {user ? (
               <li className="nav-item">
@@ -129,7 +134,7 @@ const Navbar = ({ user }: any) => {
                       color: "black",
                     }}
                   >
-                    <Person /> {user}
+                    <Person /> {user} <NotificationBadge />
                   </div>
                   <button className="navbar-btn" onClick={clearUser}>
                     Logout

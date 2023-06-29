@@ -17,8 +17,14 @@ export interface UserInterface {
 }
 
 export interface AppointmentInterface {
+  _id: string;
   appointmentDate: string;
   appointmentTime: string;
   inquiryMessage: string;
   status: string;
+  email: string;
+  adminNotification: boolean;
+  adminMarkAsRead: boolean;
+  userNotification: boolean;
+  userMarkAsRead: boolean;
 }

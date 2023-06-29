@@ -7,11 +7,12 @@ import Header from "../../components/header/Header";
 const HomePage = () => {
   return (
     <div style={{ width: "100%", height: "100%" }}>
+      <Calendar />
       <Header />
       <AboutUs />
       <Service />
       <Team />
-      <Calendar />
+
       <div className="mapouter">
         <div className="gmap_canvas">
           <h2>You can find us here</h2>
